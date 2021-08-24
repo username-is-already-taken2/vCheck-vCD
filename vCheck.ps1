@@ -61,7 +61,7 @@ Function Invoke-Settings ($Filename, $GB) {
 # Add all global variables.
 $ScriptPath = (Split-Path ((Get-Variable MyInvocation).Value).MyCommand.Path)
 $PluginsFolder = $ScriptPath + "\Plugins\"
-$Plugins = Get-ChildItem -Path $PluginsFolder -filter "*.ps1" | Sort Name
+$Plugins = Get-ChildItem -Path $PluginsFolder -filter "*.ps1" | Sort-Object Name
 $GlobalVariables = $ScriptPath + "\GlobalVariables.ps1"
 
 $file = Get-Content $GlobalVariables
@@ -203,7 +203,7 @@ $dspcont ="
 "
 
 Function Get-Base64Image ($Path) {
-	$pic = Get-Content $Path -Encoding Byte
+	$pic = Get-Content $Path -AsByteStream
 	[Convert]::ToBase64String($pic)
 }
 
